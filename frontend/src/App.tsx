@@ -17,6 +17,7 @@ function App() {
       <Routes>
         {/* Auth Routes */}
         <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
         {/* Main Routes */}
