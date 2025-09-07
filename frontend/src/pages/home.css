@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root{
-    --color-primary: #6C9BCF;
-    --color-danger: #16a085;
-    --color-success: #1B9C85;
+    --color-primary: #4a3ebc;
+    --color-danger: #4a3ebc;
+    --color-success: #4a3ebc;
     --color-warning: #F7D060;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
@@ -42,7 +42,7 @@
 }
 
 html{
-    font-size: 14px;
+    font-size: 62.5%;
 }
 
 body{

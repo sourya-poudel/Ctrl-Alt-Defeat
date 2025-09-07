@@ -7,16 +7,16 @@ import VideoAnalysisReport from "./pages/cctv/VideoAnalysisReport";
 import LiveDetectionPage from "./pages/live/LiveDetectionPage";
 import SketchToImagePage from "./pages/sketch/SketchToImagePage";
 import RecordsPage from "./pages/records/RecordsPage";
-import MyRecordsPage from "./pages/records/MyRecordsPage";
-import OtherRecordsPage from "./pages/records/OtherRecordsPage";
 import About from "./pages/about/about.tsx";
+import Landing from "./pages/about/landing.tsx";
+import MissingPage from "./pages/records/MissingPage.tsx";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* Auth Routes */}
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
@@ -38,8 +38,8 @@ function App() {
 
         {/* Records Routes */}
         <Route path="/records" element={<RecordsPage />} />
-        <Route path="/records/my-records" element={<MyRecordsPage />} />
-        <Route path="/records/other-records" element={<OtherRecordsPage />} />
+        <Route path="/missing" element={<MissingPage />} />
+
       </Routes>
     </BrowserRouter>
   );

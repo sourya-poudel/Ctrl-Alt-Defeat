@@ -93,7 +93,7 @@ const RegisterPage: React.FC = () => {
 
       // Redirect to login after successful registration
       setTimeout(() => {
-        navigate('/');
+        navigate('/login');
       }, 2000);
     } catch (err) {
       console.error('Registration error:', err);

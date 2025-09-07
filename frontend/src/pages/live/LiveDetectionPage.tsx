@@ -293,14 +293,14 @@ const LiveDetectionPage: React.FC = () => {
   useEffect(() => () => stopWebcam(), []);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-900 via-purple-900 to-gray-900 text-white p-0">
+    <div className="min-h-screen w-full bg-gradient-to-br from-blue-900 via-BLUE-900 to-gray-900 text-white p-0">
       <div className="max-w-7xl mx-auto py-10 px-4">
         <div className="flex items-center gap-4 mb-12">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/home')}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-700 to-purple-700 rounded-xl shadow hover:shadow-lg transition"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-700 to-BLUE-700 rounded-xl shadow hover:shadow-lg transition"
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Back to Home</span>
@@ -330,14 +330,15 @@ const LiveDetectionPage: React.FC = () => {
         </div>
 
         <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-5xl font-extrabold mb-12 text-center bg-clip-text text-transparent 
-            bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 drop-shadow-lg"
-        >
-          Live CCTV Detection
-        </motion.h1>
+  initial={{ opacity: 0, y: -30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7 }}
+  className="text-5xl font-bold mb-10 text-center text-white drop-shadow-lg
+    cursor-default px-4 py-2 leading-normal"
+>
+  Live CCTV Analyzer
+</motion.h1>
+
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -352,7 +353,7 @@ const LiveDetectionPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            <div className="bg-gradient-to-br from-blue-800 via-purple-800 to-gray-800 rounded-2xl shadow-xl p-8 space-y-6">
+            <div className="bg-gradient-to-br from-blue-800 via-BLUE-800 to-gray-800 rounded-2xl shadow-xl p-8 space-y-6">
               <h2 className="text-2xl font-bold mb-2">Add Suspects for Detection</h2>
               <div className="space-y-4">
                 <div>
@@ -431,7 +432,7 @@ const LiveDetectionPage: React.FC = () => {
               <button
                 onClick={handleAddSuspect}
                 disabled={isUploading}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl shadow transition disabled:bg-blue-800 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-BLUE-600 hover:from-blue-700 hover:to-BLUE-700 rounded-xl shadow transition disabled:bg-blue-800 disabled:cursor-not-allowed"
               >
                 {isUploading ? (
                   <>
@@ -452,7 +453,7 @@ const LiveDetectionPage: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="bg-gradient-to-br from-blue-800 via-purple-800 to-gray-800 rounded-2xl shadow-xl p-8"
+                  className="bg-gradient-to-br from-blue-800 via-BLUE-800 to-gray-800 rounded-2xl shadow-xl p-8"
                 >
                   <h3 className="text-xl font-semibold mb-4">Added Suspects</h3>
                   <div className="space-y-4">
@@ -462,7 +463,7 @@ const LiveDetectionPage: React.FC = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
-                        className="flex items-center gap-4 bg-gradient-to-r from-gray-700 via-purple-700 to-blue-700 rounded-xl p-4 shadow"
+                        className="flex items-center gap-4 bg-gradient-to-r from-gray-700 via-BLUE-700 to-blue-700 rounded-xl p-4 shadow"
                       >
                         <img src={suspect.photoPreview} alt={suspect.name} className="w-16 h-16 rounded-xl object-cover shadow" />
                         <div className="flex-1">
@@ -484,7 +485,7 @@ const LiveDetectionPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            <div className="bg-gradient-to-br from-blue-800 via-purple-800 to-gray-800 rounded-2xl shadow-xl p-8">
+            <div className="bg-gradient-to-br from-blue-800 via-BLUE-800 to-gray-800 rounded-2xl shadow-xl p-8">
               <div className="aspect-video rounded-2xl bg-black relative overflow-hidden shadow-lg">
                 {isStreaming ? (
                   <>
@@ -544,7 +545,7 @@ const LiveDetectionPage: React.FC = () => {
                   className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium shadow transition-all ${
                     isProcessing || suspects.length === 0
                       ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:shadow-blue-500/20'
+                      : 'bg-gradient-to-r from-blue-600 to-BLUE-600 hover:shadow-lg hover:shadow-blue-500/20'
                   }`}
                 >
                   {isProcessing ? (
@@ -561,18 +562,18 @@ const LiveDetectionPage: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-blue-800 via-purple-800 to-gray-800 rounded-2xl shadow-xl p-8">
+            <div className="bg-gradient-to-br from-blue-800 via-BLUE-800 to-gray-800 rounded-2xl shadow-xl p-8">
               <h3 className="text-xl font-semibold mb-4">Detection Stats</h3>
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gradient-to-r from-blue-700 to-purple-700 rounded-xl p-4 flex items-center gap-3 shadow">
+                <div className="bg-gradient-to-r from-blue-700 to-BLUE-700 rounded-xl p-4 flex items-center gap-3 shadow">
                   <UserPlus className="w-6 h-6 text-blue-300" />
                   <div>
                     <p className="text-sm text-gray-300">Suspects Added</p>
                     <p className="text-2xl font-bold">{suspects.length}</p>
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-purple-700 to-blue-700 rounded-xl p-4 flex items-center gap-3 shadow">
-                  <Play className="w-6 h-6 text-purple-300" />
+                <div className="bg-gradient-to-r from-BLUE-700 to-blue-700 rounded-xl p-4 flex items-center gap-3 shadow">
+                  <Play className="w-6 h-6 text-BLUE-300" />
                   <div>
                     <p className="text-sm text-gray-300">Detection Status</p>
                     <p className="text-2xl font-bold">

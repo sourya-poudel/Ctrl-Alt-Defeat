@@ -16,7 +16,7 @@ interface FaceData {
   created_at: string;
 }
 
-const RecordsPage: React.FC = () => {
+const MissingPage: React.FC = () => {
   const navigate = useNavigate();
   const [faces, setFaces] = useState<FaceData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -245,4 +245,4 @@ const RecordsPage: React.FC = () => {
   );
 };
 
-export default RecordsPage;
+export default MissingPage;

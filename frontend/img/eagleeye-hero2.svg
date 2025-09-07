@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640" role="img" aria-label="EagleEye AI Crime Detection hero illustration">
+  <style>
+    :root{
+      --blue:#4a3ebc;
+      --black:#444444;
+      --light-color:#777777;
+      --box-shadow: 0.5rem 0.5rem 0 rgba(22,160,133,0.2);
+      --text-shadow: 0.4rem 0.4rem 0 rgba(0,0,0,0.2);
+      --border: 0.2rem solid var(--blue);
+    }
+    /* Basic utility colors */
+    .accent{ fill:var(--blue); }
+    .dark{ fill:var(--black); }
+    .mid{ fill:var(--light-color); }
+    .stroke-blue{ stroke:var(--blue); }
+    .stroke-dark{ stroke:var(--black); }
+    .stroke-mid{ stroke:var(--light-color); }
+
+    /* Subtle motion */
+    @keyframes bob { 0%,100%{ transform:translateY(0px);} 50%{ transform:translateY(-4px);} }
+    @keyframes scanY { 0%{ transform:translateY(-90px);} 100%{ transform:translateY(90px);} }
+    @keyframes dash { to { stroke-dashoffset:-240; } }
+    @keyframes blink { 0%,90%{ opacity:1;} 95%,100%{ opacity:0.15;} }
+    @keyframes pulse { 0%{ r:10; opacity:0.9;} 70%{ r:18; opacity:0;} 100%{ r:10; opacity:0;} }
+    @keyframes rotate { to { transform:rotate(360deg);} }
+
+    .bob { animation:bob 4s ease-in-out infinite; transform-origin:center; }
+    .scan-line { animation:scanY 2.8s linear infinite; }
+    .march { stroke-dasharray:10 8; animation:dash 3s linear infinite, blink 6s ease-in-out infinite; }
+    .pulse { animation:pulse 1.8s ease-out infinite; }
+    .spin { animation:rotate 6s linear infinite; transform-origin: 170px 170px; }
+
+    /* Shadows using filters */
+    .drop { filter:url(#shadow); }
+    .textShadow { filter:url(#tshadow); }
+
+    /* Smooth corners */
+    .round { stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+
+  <!-- filters -->
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="8" dy="8" stdDeviation="6" flood-color="rgba(22,160,133,0.2)" />
+    </filter>
+    <filter id="tshadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="6" dy="6" stdDeviation="4" flood-color="rgba(0,0,0,0.2)" />
+    </filter>
+    <!-- subtle screen gradient -->
+    <linearGradient id="screenGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f6f6ff"/>
+    </linearGradient>
+    <!-- diagonal pattern for scanning box -->
+    <pattern id="diag" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="4" height="8" class="accent" opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Left hero composition group -->
+  <g class="bob">
+    <!-- Monitor body -->
+    <g class="drop">
+      <rect x="60" y="120" rx="22" ry="22" width="520" height="340" class="stroke-dark" fill="#ffffff" stroke-width="3"/>
+      <!-- Screen -->
+      <rect x="78" y="140" rx="16" ry="16" width="484" height="300" fill="url(#screenGrad)" stroke="var(--light-color)" stroke-width="2"/>
+      <!-- Stand -->
+      <rect x="260" y="470" width="120" height="16" class="accent" rx="8"/>
+      <rect x="220" y="486" width="200" height="18" class="dark" opacity="0.08" rx="9"/>
+    </g>
+
+    <!-- Screen content -->
+    <g>
+      <!-- Left profile placeholder -->
+      <rect x="98" y="170" width="130" height="160" rx="12" fill="transparent" stroke="var(--light-color)" stroke-width="2"/>
+      <circle cx="163" cy="230" r="36" class="mid" opacity="0.55"/>
+      <rect x="128" y="260" width="70" height="56" class="mid" opacity="0.35" rx="10"/>
+      <!-- Details lines -->
+      <rect x="98" y="340" width="130" height="8" class="mid" opacity="0.6" rx="4"/>
+      <rect x="98" y="356" width="110" height="8" class="mid" opacity="0.4" rx="4"/>
+    </g>
+
+    <!-- Main face detection box -->
+    <g>
+      <!-- marching detection frame -->
+      <rect x="250" y="185" width="200" height="180" fill="url(#diag)" stroke="var(--blue)" stroke-width="3" class="round march"/>
+      <!-- face (simple vector) -->
+      <g>
+        <circle cx="350" cy="250" r="44" fill="#ffffff" stroke="var(--black)" stroke-width="2"/>
+        <path d="M315,248 q35,-30 70,0" fill="var(--black)"/>
+        <rect x="312" y="287" width="78" height="58" rx="22" fill="var(--blue)" opacity="0.15"/>
+        <circle cx="336" cy="254" r="4" class="dark"/>
+        <circle cx="364" cy="254" r="4" class="dark"/>
+        <path d="M336,272 q14,10 28,0" class="stroke-dark" stroke-width="3" fill="none"/>
+      </g>
+      <!-- scanning line -->
+      <rect x="252" y="205" width="196" height="6" class="accent scan-line" opacity="0.18"/>
+    </g>
+
+    <!-- Alert chip -->
+    <g transform="translate(480,360)">
+      <circle r="22" class="accent" opacity="0.15"/>
+      <circle r="10" class="accent"/>
+      <circle r="10" class="accent pulse"/>
+    </g>
+
+    <!-- Camera (top-left) -->
+    <g transform="translate(420,130)" class="drop">
+      <!-- arm -->
+      <rect x="-30" y="24" width="60" height="12" rx="6" class="accent"/>
+      <!-- body -->
+      <g class="round">
+        <rect x="-10" y="-6" width="130" height="42" rx="10" class="accent"/>
+        <rect x="92" y="0" width="24" height="30" rx="8" fill="#ffffff" class="stroke-blue" stroke-width="3"/>
+        <circle cx="104" cy="15" r="6" class="accent"/>
+      </g>
+      <!-- rotating lens radar -->
+      <g class="spin">
+        <circle cx="170" cy="170" r="18" fill="none" stroke="var(--blue)" stroke-width="3" opacity="0.6"/>
+        <circle cx="170" cy="170" r="10" class="accent" opacity="0.15"/>
+      </g>
+    </g>
+
+    <!-- Decorative plant to echo original layout -->
+    <g transform="translate(180,420)" opacity="0.9">
+      <rect x="0" y="40" width="56" height="26" rx="8" class="accent"/>
+      <path d="M28,40 v-34" stroke="var(--light-color)" stroke-width="3"/>
+      <path d="M28,10 c-8,8 -16,10 -22,22" fill="none" class="stroke-mid" stroke-width="3"/>
+      <path d="M28,10 c8,8 16,10 22,22" fill="none" class="stroke-mid" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- Right-side decorative dots to balance space (non-intrusive, matches hero area) -->
+  <g transform="translate(650,140)" opacity="0.22" class="bob">
+    <circle cx="220" cy="40" r="6" class="accent"/>
+    <circle cx="260" cy="100" r="6" class="accent"/>
+    <circle cx="200" cy="160" r="6" class="accent"/>
+    <circle cx="240" cy="220" r="6" class="accent"/>
+  </g>
+</svg>

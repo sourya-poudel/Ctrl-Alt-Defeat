@@ -99,9 +99,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
       onDrop={handleDrop}
       className={`relative w-full h-full rounded-xl border-2 border-dashed
         transition-all cursor-pointer flex flex-col items-center justify-center p-6
-        ${isDragging ? "border-blue-500 bg-blue-50/10" : "border-gray-600 hover:border-blue-500"}
+        ${isDragging ? "border-indigo-600 bg-indigo-600" : "border-gray-600 hover:border-indigo-600"}
         ${selectedFile ? "bg-gray-800" : "bg-gray-800/50"}
-        hover:shadow-lg hover:shadow-blue-500/10`}
+        hover:shadow-lg hover:shadow-indigo-600/10`}
     >
       <input
         ref={fileInputRef}
@@ -112,14 +112,14 @@ const FileUpload: React.FC<FileUploadProps> = ({
       />
       {selectedFile ? (
         <div className="text-center">
-          <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-blue-500/20">
+          <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-600/20">
             {type === "video" ? (
-              <Video className="w-8 h-8 text-blue-500" />
+              <Video className="w-8 h-8 text-indigo-600" />
             ) : (
-              <Camera className="w-8 h-8 text-blue-500" />
+              <Camera className="w-8 h-8 text-indigo-600" />
             )}
           </div>
-          <p className="text-blue-500 font-medium mb-1">{selectedFile.name}</p>
+          <p className="text-indigo-600 font-medium mb-1">{selectedFile.name}</p>
           <p className="text-gray-400 text-sm">
             {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB
           </p>
@@ -180,13 +180,13 @@ const ProcessingDisplay: React.FC<ProcessingDisplayProps> = ({ progress }) => (
       </div>
       <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
         <div
-          className="h-full bg-blue-500 transition-all duration-300"
+          className="h-full bg-indigo-600 transition-all duration-300"
           style={{ width: `${Math.min(progress, 100)}%` }}
         />
       </div>
     </div>
     <div className="mt-8 flex items-center justify-center">
-      <Loader2 className="w-10 h-10 text-blue-500 animate-spin" />
+      <Loader2 className="w-10 h-10 text-indigo-600 animate-spin" />
     </div>
     <div className="mt-4 text-center text-gray-400">
       <p>Your video is being analyzed</p>
@@ -346,7 +346,7 @@ const CCTVAnalyzerPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-blue-950 to-purple-900 text-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-blue-950 to-blue-950 text-white">
       <div className="flex-1">
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex items-center gap-4 mb-8">
@@ -361,16 +361,15 @@ const CCTVAnalyzerPage: React.FC = () => {
             </motion.button>
           </div>
           <motion.h1
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-5xl font-bold mb-10 text-center bg-clip-text text-transparent 
-              bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 drop-shadow-lg
-              hover:from-purple-500 hover:to-blue-500 transition-all duration-500
-              cursor-default px-4 py-2 leading-normal"
-          >
-            CCTV Footage Analyzer
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="text-5xl font-bold mb-10 text-center text-white drop-shadow-lg
+                cursor-default px-4 py-2 leading-normal"
+            >
+              CCTV Footage Analyzer
           </motion.h1>
+
           <div className="flex flex-col gap-8">
             {/* Tabs */}
             <div className="flex gap-4 justify-center">
@@ -380,7 +379,7 @@ const CCTVAnalyzerPage: React.FC = () => {
                 onClick={() => setActiveTab("existing")}
                 className={`flex-1 py-4 px-6 rounded-xl font-semibold text-lg transition-all
                   ${activeTab === "existing"
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/20"
+                    ? "bg-gradient-to-r from-blue-600 to-BLUE-100 text-white shadow-lg shadow-indigo-600/20"
                     : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                   }`}
               >
@@ -392,7 +391,7 @@ const CCTVAnalyzerPage: React.FC = () => {
                 onClick={() => setActiveTab("new")}
                 className={`flex-1 py-4 px-6 rounded-xl font-semibold text-lg transition-all
                   ${activeTab === "new"
-                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/20"
+                    ?"bg-gradient-to-r from-blue-600 to-BLUE-100 text-white shadow-lg shadow-indigo-600/20"
                     : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                   }`}
               >
@@ -437,7 +436,7 @@ const CCTVAnalyzerPage: React.FC = () => {
                           value={suspectName}
                           onChange={(e) => setSuspectName(e.target.value)}
                           className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg
-                            focus:ring-2 focus:ring-purple-500 focus:border-transparent
+                            focus:ring-2 focus:ring-BLUE-500 focus:border-transparent
                             placeholder-gray-400 text-white"
                           placeholder="Enter full name of the suspect"
                         />
@@ -448,7 +447,7 @@ const CCTVAnalyzerPage: React.FC = () => {
                           value={crimeDescription}
                           onChange={(e) => setCrimeDescription(e.target.value)}
                           className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg
-                            focus:ring-2 focus:ring-purple-500 focus:border-transparent
+                            focus:ring-2 focus:ring-BLUE-500 focus:border-transparent
                             placeholder-gray-400 text-white resize-none h-24"
                           placeholder="Enter the crime details..."
                         />
@@ -571,7 +570,7 @@ const CCTVAnalyzerPage: React.FC = () => {
                         ? !existingVideo
                         : !suspectImage || !newVideo)
                       ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/20"
+                      : "bg-gradient-to-r from-blue-600 to-BLUE-100 text-white hover:shadow-lg hover:shadow-indigo-600/20"
                     }`}
                 >
                   {isAnalyzing ? (
@@ -687,12 +686,7 @@ const CCTVAnalyzerPage: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <footer className="w-full py-6 mt-12 bg-gradient-to-r from-blue-900 via-purple-900 to-gray-900 text-center text-gray-400 rounded-t-xl shadow-inner">
-        <span>
-          &copy; {new Date().getFullYear()} CCTV Analyzer &mdash; Powered by React, Tailwind CSS, Framer Motion, Lucide Icons
-        </span>
-      </footer>
+      
     </div>
   );
 };
