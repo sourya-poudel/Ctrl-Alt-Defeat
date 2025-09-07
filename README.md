@@ -38,8 +38,7 @@ With recent security concerns in Nepal — such as the **Simara Jail conflict wh
 1. Clone the project:  
    ```bash
    git clone https://github.com/sourya-poudel/Ctrl-Alt-Defeat
-2. Train the pix2pix model
-<br/>
+2. Train the pix2pix model:
 Train your own model [here](https://github.com/sourya-poudel/Ctrl-Alt-Defeat/blob/main/backend/sketchtoimg-modeltrainer.py)
 **Copy and paste the file to backend folder**
 
@@ -56,4 +55,5 @@ Train your own model [here](https://github.com/sourya-poudel/Ctrl-Alt-Defeat/blo
    npm install
 
    npm run dev
+
 
