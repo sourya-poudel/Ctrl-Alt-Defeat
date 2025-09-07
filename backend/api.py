@@ -61,12 +61,12 @@ except Exception as e:
 tasks = {}
 
 # Load sketch to image model
-from sketch_to_color import Generator, denormalize
+from sketch_to_color import UNetGenerator, denormalize
 import torchvision.transforms as transforms
 
 # Initialize model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-generator = Generator().to(device)
+generator = UNetGenerator().to(device)
 try:
     generator.load_state_dict(torch.load("generator_pix2pix.pth", map_location=device))
     generator.eval()
