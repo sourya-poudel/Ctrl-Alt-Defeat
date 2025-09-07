@@ -38,11 +38,8 @@ With recent security concerns in Nepal — such as the **Simara Jail conflict wh
 1. Clone the project:  
    ```bash
    git clone https://github.com/sourya-poudel/Ctrl-Alt-Defeat
-2. Download the missing Model File:
-Due to GitHub’s 100MB file size limit, the model file **generator_pix2pix.pth** is not included in this repository.
-Download it [here](https://drive.google.com/file/d/1j_JGRHu8Rnafv7GnP2TNwHsTbmi7PNFn/view?usp=drive_link)
-Or, 
-Train your own model
+2. Train the pix2pix model
+Train your own model [here](https://github.com/sourya-poudel/Ctrl-Alt-Defeat/blob/main/backend/sketchtoimg-modeltrainer.py)
 **Copy and paste the file to backend folder**
 
 4. Inlcude the .json file from google firebase in backend folder
@@ -56,4 +53,5 @@ Train your own model
 6. Frontend setup:
    ```bash
    npm install
+
    npm run dev
