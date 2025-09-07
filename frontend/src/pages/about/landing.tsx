@@ -183,7 +183,7 @@ const Landing: React.FC = () => {
         <div className="box">
           <img src="img/review2.png" alt="" />
           <h3>
-            Inspector R. Mehta <br/>
+            Inspector B. Adhikari <br/>
             <span className="class3">City Police Department</span>
           </h3>
           <br/>
@@ -215,7 +215,7 @@ const Landing: React.FC = () => {
 
         <div className="box">
           <img src="img/review3.png" alt="" />
-          <h3>Superintendent A. Khan<br/><span className="class6">Metropolitan Police</span></h3><br/>
+          <h3>Superintendent S. Poudel<br/><span className="class6">Metropolitan Police</span></h3><br/>
           <div className="stars">
             <i className="fas fa-star class4"></i>
             <i className="fas fa-star class4"></i>
@@ -264,3 +264,4 @@ const Landing: React.FC = () => {
 }
 
 export default Landing;
+
