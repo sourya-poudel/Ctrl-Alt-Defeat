@@ -187,7 +187,7 @@ const RegisterPage: React.FC = () => {
               <span className="text-sm">{success}</span>
             </div>
           )}
-
+<p className="text-gray-600 mt-2"><a href="/login">Already registered your chauki?</a></p>
           <button
             type="submit"
             disabled={isLoading || isCheckingId || !!chaukiIDError}

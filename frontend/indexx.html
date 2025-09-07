@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="icon-white.png" />
+    <title>EagleEye - AI Crime Detection</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <!-- AOS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- React root (hidden initially) -->
+    <div id="root" style="display:none;"></div>
+
+    <!-- Header / Landing Page -->
+    <header class="header">
+      <a href="#" class="logo">
+        <img src="icon-white.png" alt="EagleEye Icon" style="height:1em; vertical-align:middle;" />
+        EagleEye
+      </a>
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#Developers">Developers</a>
+        <a href="#review">Review</a>
+      </nav>
+      <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+      <div class="image">
+        <img src="img/eagleeye-hero.png" alt="Hero Image" />
+      </div>
+      <div class="content">
+        <h3>AI Crime Detection</h3>
+        <p>
+          AI-powered criminal detection with real-time surveillance, instant alerts,
+          and accurate suspect identification for safer communities.
+        </p>
+        <a href="#" class="btn" id="loadApp">
+          Get Started <span class="fas fa-chevron-right"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Icons Section -->
+    <section class="icons-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="1000">
+      <div class="icons">
+        <i class="fas fa-shield-halved"></i>
+        <h3>240+</h3>
+        <p>Cases Solved</p>
+      </div>
+      <div class="icons">
+        <i class="fas fa-landmark"></i>
+        <h3>20+</h3>
+        <p>Police Stations</p>
+      </div>
+      <div class="icons">
+        <i class="fas fa-eye"></i>
+        <h3>90%+</h3>
+        <p>Accuracy in Detection</p>
+      </div>
+      <div class="icons">
+        <i class="fas fa-clock"></i>
+        <h3>24/7</h3>
+        <p>Real-Time Monitoring</p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+<section class="services" id="services" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="1000">
+      <h1 class="heading">Our <span>Services</span></h1>
+      <div class="box-container">
+        <div class="box">
+          <i class="fas fa-laptop-code"></i>
+          <h3>CCTV Detection</h3>
+          <p>24/7 live CCTV detection ensures instant alerts when it matters most.</p>
+          <a href="#" class="btn feature-link" id="loadApp">Learn More <span class="fas fa-chevron-right"></span></a>
+        </div>
+        <div class="box">
+          <i class="fas fa-pen-to-square"></i>
+          <h3>Sketch to Image</h3>
+          <p>Transform rough sketches into lifelike images instantly.</p><bR><br>
+          <a href="#" class="btn feature-link" id="loadApp">Learn More <span class="fas fa-chevron-right"></span></a>
+        </div>
+        <div class="box">
+          <i class="fas fa-user-slash"></i>
+          <h3>Criminal Records</h3>
+          <p>Centralized records for faster investigations.</p><br><Br>
+          <a href="#" class="btn feature-link" id="loadApp">Learn More <span class="fas fa-chevron-right"></span></a>
+        </div>
+        <div class="box">
+          <i class="fas fa-camera"></i>
+          <h3>Video Analyzer</h3>
+          <p>Analyze hours of footage in minutes for actionable insights.</p><br><br>
+          <a href="#" class="btn feature-link" id="loadApp">Learn More <span class="fas fa-chevron-right"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="1000">
+      <h1 class="heading">About <span>Us</span></h1>
+      <div class="row">
+        <div class="image">
+          <img src="img/eagleeye-hero2.svg" alt="" style="transform: scale(1.5); transform-origin: top left; position: relative; top: -30px;" />
+        </div>
+        <div class="content">
+          <h3>Your safety, powered by AI.</h3>
+          <p>We are dedicated to creating safer communities with real-time AI surveillance and intelligent image processing.</p>
+          <p>From CCTV analysis to sketch-to-photo conversion, EagleEye delivers precise insights for faster investigations.</p>
+          <a href="#" class="btn feature-link" id="loadApp">Learn More <span class="fas fa-chevron-right"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="devs" id="Developers" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000">
+
+      <h1 class="heading">our <span>team</span></h1>
+            <br><br><br>
+      <div class="box-container" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000">
+        <div class="box" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000">
+          <img src="img/sourya.png" alt="" />
+          <h3>Sourya Poudel</h3>
+          <span>Developer & Team Leader</span>
+          <div class="share">
+            <a href="https://www.facebook.com/sourya.poudel.569017" class="fab fa-facebook-f"></a>
+            <a href="https://www.github.com/sourya-poudel" class="fab fa-github"></a>
+            <a href="https://www.instagram.com/sourya_poudel_/" class="fab fa-instagram"></a>
+            <a href="https://www.linkedin.com/in/sourya-poudel-451b25219/" class="fab fa-linkedin"></a>
+          </div>
+        </div>
+
+        <div class="box" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000">
+          <img src="img/rajan.png" alt="" />
+          <h3>Rajan Poudel</h3>
+          <span>Developer</span>
+          <div class="share">
+            <a href="https://www.facebook.com/rajan.poudel.626944" class="fab fa-facebook-f"></a>
+            <a href="https://www.github.com/rajan-poudel" class="fab fa-github"></a>
+            <a href="https://www.instagram.com/_rajanpoudel" class="fab fa-instagram"></a>
+            <a href="https://www.linkedin.com/in/rajanpoudel-np/" class="fab fa-linkedin"></a>
+          </div>
+        </div>
+
+        <div class="box" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000">
+          <img src="img/barun.png" alt="" />
+          <h3> Amir Jung KC</h3>
+          <span>Developer</span>
+          <div class="share">
+            <a href="https://www.facebook.com/barun.kc.3150" class="fab fa-facebook-f"></a>
+            <a href="https://www.github.com/barunkc" class="fab fa-github"></a>
+            <a href="https://www.google.com" class="fab fa-instagram"></a>
+            <a href="https://www.linkedin.com/in/barun-kc-928aab382/" class="fab fa-linkedin"></a>
+          </div>
+        </div>
+
+        <div class="box" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000" >
+          <img src="img/aayush.png" alt="" />
+          <h3>Aayush Kandel</h3>
+          <span>Developer</span>
+          <div class="share">
+            <a href="https://www.facebook.com/aayush.kandel.21" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-github"></a>
+            <a href="https://www.instagram.com/aayu_shkandel7/" class="fab fa-instagram"></a>
+            <a href="https://www.linkedin.com/in/aayush-kandel-758520376/" class="fab fa-linkedin"></a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="review" id="review" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000">
+      <h1 class="heading">client's <span>review</span></h1>
+      <div class="box-container" data-aos="fade-up"  data-aos-easing="ease-in-out" data-aos-duration="1000">
+        <div class="box">
+          <img src="img/review2.png" alt="" />
+          <h3>
+            Inspector R. Mehta <br>
+            <span style="font-size: 0.65em; font-weight: 300;">City Police Department</span>
+          </h3>
+          <br>
+          <div class="stars">
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+          </div>
+          <p class="text">
+            EagleEye has completely transformed how we investigate cases. What used to take days of manually reviewing CCTV footage now takes just a few minutes. The AI-powered alerts help us act faster and keep our communities safer.
+          </p>
+        </div>
+
+        <div class="box">
+          <img src="img/review1.png" alt="" />
+          <h3>Superintendent A. Khan<br><span style="font-size: 0.65em; font-weight: 300;">State Crime Branch</span></h3><br>
+          <div class="stars">
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star-half-alt" style="color: gold;"></i>
+          </div>
+          <p class="text">
+          The sketch-to-photo conversion tool has been a game-changer for us. Even with rough sketches, we’ve been able to identify suspects accurately and connect them to real cases. This technology gives us an edge we never had before.
+        </div>
+
+        <div class="box">
+          <img src="img/review3.png" alt="" />
+          <h3>Superintendent A. Khan<br><span style="font-size: 0.65em; font-weight: 300;">Metropolitan Police</span></h3><br>
+          <div class="stars">
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+            <i class="fas fa-star" style="color: gold;"></i>
+          </div>
+          <p class="text">
+            We rely on EagleEye for both live monitoring and historical analysis. The timestamped clips and detailed reports save hours of effort during investigations. It’s like having an extra officer who never gets tired.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="1000">
+      <div class="box-container">
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a href="#home"><i class="fas fa-chevron-right"></i> Home</a>
+          <a href="#services"><i class="fas fa-chevron-right"></i> Services</a>
+          <a href="#about"><i class="fas fa-chevron-right"></i> About</a>
+          <a href="#Developers"><i class="fas fa-chevron-right"></i> Developers</a>
+          <a href="#review"><i class="fas fa-chevron-right"></i> Review</a>
+        </div>
+        <div class="box">
+          <h3>Our Services</h3>
+          <a href="#services"><i class="fas fa-chevron-right"></i> CCTV Detection</a>
+          <a href="#services"><i class="fas fa-chevron-right"></i> Sketch to Image</a>
+          <a href="#services"><i class="fas fa-chevron-right"></i> Criminal Records</a>
+          <a href="#services"><i class="fas fa-chevron-right"></i> Video Analyzer</a>
+        </div>
+        <div class="box">
+          <h3>Contact Info</h3>
+          <a href="tel:9766280072"><i class="fas fa-phone"></i> +977 976-6280072</a>
+          <a href="tel:9802922270"><i class="fas fa-phone"></i> +977 980-2922270</a>
+          <a href="mailto:souryapoudel.np@gmail.com"><i class="fas fa-envelope"></i> souryapoudel.np@gmail.com</a>
+          <a href="mailto:rajanpoudel.np@gmail.com"><i class="fas fa-envelope"></i> rajanpoudel.np@gmail.com</a>
+          <a href="#"><i class="fas fa-map-marker-alt"></i> Bharatpur - 7, Chitwan</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="script.js"></script>
+    <script>
+      // Load React app only after clicking Get Started
+      document.getElementById('loadApp').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Hide landing page
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('section.home').style.display = 'none';
+        document.querySelectorAll('section.icons-container, section.services, section.about, section.footer')
+          .forEach(sec => sec.style.display = 'none');
+
+        // Show React root
+        const root = document.getElementById('root');
+        root.style.display = 'block';
+
+        // Load React app dynamically
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/src/main.tsx';
+        document.body.appendChild(script);
+      });
+    </script>
+  </body>
+</html>

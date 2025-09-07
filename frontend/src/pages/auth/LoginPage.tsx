@@ -91,6 +91,7 @@ const LoginPage: React.FC = () => {
           <Lock className="w-12 h-12 text-blue-600 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-800">Police Station Login</h1>
           <p className="text-gray-600 mt-2">Enter your credentials to continue</p>
+          
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
@@ -159,9 +160,10 @@ const LoginPage: React.FC = () => {
             <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg">
               <AlertCircle className="w-5 h-5" />
               <span className="text-sm">{error}</span>
+              
             </div>
           )}
-
+<p className="text-gray-600 mt-2"><a href="/register">Haven't registered your chauki yet?</a></p>
           <button
             type="submit"
             disabled={isLoading || isLoadingStations}

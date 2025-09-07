@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Explora&family=Montserrat:wght@300&family=Open+Sans:wght@300&family=Poppins:wght@100;200;300;400;500;600;700&family=Roboto:wght@300&display=swap");
 
 :root {
-  --green: #16a085;
-  --black: #444;
-  --light-color: #777;
+  --blue: #4a3ebc;
+  --black: #444444;
+  --light-color: #777777;
   --box-shadow: 0.5rem 0.5rem 0 rgba(22, 160, 133, 0.2);
   --text-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.2);
-  --border: 0.2rem solid var(--green);
+  --border: 0.2rem solid var(--blue);
 }
 
 * {
@@ -48,7 +48,7 @@ section:nth-child(even) {
 
 .heading span {
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--blue);
 }
 
 .btn {
@@ -59,7 +59,7 @@ section:nth-child(even) {
   border: var(--border);
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
-  color: var(--green);
+  color: var(--blue);
   cursor: pointer;
   font-size: 1.7rem;
   background: #fff;
@@ -68,18 +68,18 @@ section:nth-child(even) {
 .btn span {
   padding: 0.7rem 1rem;
   border-radius: 0.5rem;
-  background: var(--green);
+  background: var(--blue);
   color: #fff;
   margin-left: 0.5rem;
 }
 
 .btn:hover {
-  background: var(--green);
+  background: var(--blue);
   color: #fff;
 }
 
 .btn:hover span {
-  color: var(--green);
+  color: var(--blue);
   background: #fff;
   margin-left: 1rem;
 }
@@ -104,7 +104,7 @@ section:nth-child(even) {
 }
 
 .header .logo i {
-  color: var(--green);
+  color: var(--blue);
 }
 
 .header .navbar a {
@@ -114,7 +114,7 @@ section:nth-child(even) {
 }
 
 .header .navbar a:hover {
-  color: var(--green);
+  color: var(--blue);
 }
 
 /*Esse é o estilo do menu hamburger*/
@@ -122,7 +122,7 @@ section:nth-child(even) {
   font-size: 2.5rem;
   border-radius: 0.5rem;
   background: #e6e3e3;
-  color: var(--green);
+  color: var(--blue);
   padding: 1rem 1.5rem;
   cursor: pointer;
   display: none;
@@ -180,7 +180,7 @@ section:nth-child(even) {
 
 .icons-container .icons i {
   font-size: 4.5rem;
-  color: var(--green);
+  color: var(--blue);
   padding-bottom: 0.7rem;
 }
 
@@ -211,7 +211,7 @@ section:nth-child(even) {
 }
 
 .services .box-container .box i {
-  color: var(--green);
+  color: var(--blue);
   font-size: 5rem;
   padding-bottom: 0.5rem;
 }
@@ -261,13 +261,13 @@ section:nth-child(even) {
   line-height: 1.8;
 }
 
-.doctors .box-container {
+.devs .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 2rem;
+  gap: 1.545rem;
 }
 
-.doctors .box-container .box {
+.devs .box-container .box {
   text-align: center;
   background: #fff;
   border-radius: 0.5rem;
@@ -276,7 +276,7 @@ section:nth-child(even) {
   padding: 2rem;
 }
 
-.doctors .box-container .box img {
+.devs .box-container .box img {
   height: 20rem;
   border: var(--border);
   border-radius: 0.5rem;
@@ -284,36 +284,42 @@ section:nth-child(even) {
   margin-bottom: 1rem;
 }
 
-.doctors .box-container .box h3 {
+.devs .box-container .box h3 {
   color: var(--black);
   font-size: 2.5rem;
 }
 
-.doctors .box-container .box span {
-  color: var(--green);
+.devs .box-container .box span {
+  color: var(--blue);
   font-size: 1.5rem;
 }
 
-.doctors .box-container .box .share {
+.devs .box-container .box .share {
   padding-top: 2rem;
 }
 
-.doctors .box-container .box .share a {
+.devs .box-container .box .share a {
   height: 5rem;
   width: 5rem;
   line-height: 4.5rem;
   font-size: 2rem;
-  color: var(--green);
+  color: var(--blue);
   border-radius: 0.5rem;
   border: var(--border);
   margin: 0.3rem;
 }
 
-.doctors .box-container .box .share a:hover {
-  background: var(--green);
+.devs .box-container .box .share a:hover {
+  background: var(--blue);
   color: #fff;
   box-shadow: var(--box-shadow);
 }
+
+.stars{
+    color: gold;
+    margin-bottom: -30px;
+}
+
 
 
 .review .box-container {
@@ -367,7 +373,7 @@ section:nth-child(even) {
   top: -4rem;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--green);
+  background: var(--blue);
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
   height: 25rem;
@@ -421,12 +427,12 @@ section:nth-child(even) {
 }
 
 .blogs .box-container .box .content .icon a:hover {
-  color: var(--green);
+  color: var(--blue);
 }
 
 .blogs .box-container .box .content .icon a i {
   padding: 0.5rem;
-  color: var(--green);
+  color: var(--blue);
 }
 
 .blogs .box-container .box .content h3 {
@@ -462,12 +468,12 @@ section:nth-child(even) {
 
 .footer .box-container .box a i {
   padding-right: 0.5rem;
-  color: var(--green);
+  color: var(--blue);
 }
 
 .footer .box-container .box a:hover i {
   padding-right: 2rem;
-  color: var(--green);
+  color: var(--blue);
 }
 
 
