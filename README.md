@@ -1,12 +1,12 @@
-# 🚨 Crime Vision AI  
+# 🚨 Eagle Eye
 
 **Project for CyberUtsav 2.0 – The Ultimate 12-Hour Hackathon Experience**  
-**Team Members:** Rajan Poudel, Sourya Poudel, Aayush Kandel, Barun  
+**Team Members:** Soruya Poudel, Rajan Poudel, Aayush Kandel, Amir Jung KC  
 
 ---
 
 ## 🔍 Overview  
-Crime Vision AI is an **AI-powered surveillance and investigation assistant** that helps law enforcement agencies detect and identify suspects from multiple sources in real-time.  
+Eagle Eye is an **AI-powered surveillance and investigation assistant** that helps law enforcement agencies detect and identify suspects from multiple sources in real-time.  
 
 With recent security concerns in Nepal — such as the **Simara Jail conflict where inmates temporarily took control of the jail** — efficient monitoring tools are urgently needed. Our solution is designed to support **Nepal Police and other security agencies** in preventing, investigating, and managing crimes.  
 
