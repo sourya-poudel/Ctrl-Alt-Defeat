@@ -6,9 +6,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-# -------------------------------
-#   U-Net Generator
-# -------------------------------
 class UNetGenerator(nn.Module):
     def __init__(self, in_channels=3, out_channels=3, features=64):
         super(UNetGenerator, self).__init__()
@@ -38,16 +35,10 @@ class UNetGenerator(nn.Module):
         x = self.decoder(x)
         return x
 
-# -------------------------------
-#   Denormalize function
-# -------------------------------
 def denormalize(tensor):
     """ Convert from [-1, 1] to [0, 1] """
     return (tensor * 0.5 + 0.5).clamp(0, 1)
 
-# -------------------------------
-#   Load Generator
-# -------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 generator = UNetGenerator().to(device)
 
@@ -56,18 +47,13 @@ checkpoint_path = "generator_pix2pix.pth"  # Replace if you renamed
 generator.load_state_dict(torch.load(checkpoint_path, map_location=device))
 generator.eval()
 
-# -------------------------------
-#   Image Transformations
-# -------------------------------
+
 transform = transforms.Compose([
     transforms.Resize((256, 256)),
     transforms.ToTensor(),
     transforms.Normalize([0.5]*3, [0.5]*3)
 ])
 
-# -------------------------------
-#   Function to generate colored image
-# -------------------------------
 def generate_image(sketch_path, output_path="images/colored/output.jpg"):
     if not os.path.exists(os.path.dirname(output_path)):
         os.makedirs(os.path.dirname(output_path))
@@ -96,7 +82,4 @@ def generate_image(sketch_path, output_path="images/colored/output.jpg"):
     
     plt.show()
 
-# -------------------------------
-#   Example Usage
-# -------------------------------
-# generate_image("images/sketches/example_sketch.png")
+
