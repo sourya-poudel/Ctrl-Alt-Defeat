@@ -26,11 +26,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # Initialize FastAPI app
 app = FastAPI()
-
-# This must be added before any routes or other middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "*"],  # Add your frontend URL
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -39,10 +37,8 @@ app.add_middleware(
 
 # Initialize Firestore with error handling
 try:
-    # Check if app is already initialized
     firebase_app = firebase_admin.get_app()
 except ValueError:
-    # If not, initialize it
     try:
         cred = credentials.Certificate("eagleeye-e9d6e-firebase-adminsdk-fbsvc-53fc55a2ec.json")
         firebase_app = firebase_admin.initialize_app(cred)
@@ -56,8 +52,6 @@ try:
 except Exception as e:
     print(f"Error getting Firestore client: {str(e)}")
     db = None
-
-# Store analysis tasks
 tasks = {}
 
 # Load sketch to image model
@@ -74,15 +68,13 @@ try:
 except Exception as e:
     print(f"Error loading sketch-to-image model: {str(e)}")
     sketch_model_loaded = False
-
-# Define transformations for sketch input
 sketch_transform = transforms.Compose([
     transforms.Resize((256, 256)),
     transforms.Grayscale(num_output_channels=3),
     transforms.ToTensor(),
     transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
 ])
-# Initialize FaceAnalysis model for live detection
+# Initialize FaceAnalysis modl for live Detection
 try:
     live_face_app = FaceAnalysis(name='buffalo_l')
     live_face_app.prepare(ctx_id=-1, det_size=(640, 640))
@@ -92,7 +84,7 @@ except Exception as e:
     print(f"Error initializing face recognition: {e}")
     live_recognition_ready = False
 
-# Load face database for live detection (you can call this where needed)
+# Load face databasE
 def load_face_database():
     try:
         faces_ref = db.collection("faces").stream()
@@ -133,23 +125,14 @@ async def sketch_to_image(sketch: UploadFile = File(...)):
         )
     
     try:
-        # Read the uploaded sketch
         contents = await sketch.read()
         sketch_img = Image.open(io.BytesIO(contents)).convert("RGB")
-        
-        # Transform the image
         sketch_tensor = sketch_transform(sketch_img).unsqueeze(0).to(device)
-        
-        # Generate the colored image
         with torch.no_grad():
             generated_image = generator(sketch_tensor).squeeze(0).cpu().detach()
         print("Generated image shape:", generated_image.shape)
-
-        # Convert to image format
         generated_image = denormalize(generated_image).permute(1, 2, 0).numpy()
         generated_image = (generated_image * 255).astype(np.uint8)
-        
-        # Convert to base64 for sending to frontend
         generated_pil = Image.fromarray(generated_image)
         buffered = io.BytesIO()
         generated_pil.save(buffered, format="JPEG")
@@ -169,13 +152,12 @@ async def sketch_to_image(sketch: UploadFile = File(...)):
 
 @app.post("/upload-video")
 async def upload_video(video: UploadFile = File(...)):
-    # Generate a unique task ID
+    # Generate a unique task id
     task_id = str(uuid.uuid4())
     
-    # Create a directory for uploaded files if it doesn't exist
+    # Create a directory for uploaded files if it doesnot exists
     os.makedirs("uploads", exist_ok=True)
-    
-    # Save the uploaded video
+    # Save the Video
     file_path = f"uploads/{task_id}_{video.filename}"
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(video.file, buffer)
@@ -199,8 +181,6 @@ async def analyze_video(task_id: str, background_tasks: BackgroundTasks):
     
     # Update task status
     tasks[task_id]["status"] = "processing"
-    
-    # Start processing in the background
     background_tasks.add_task(process_video, task_id)
     
     return {"task_id": task_id, "status": "processing"}
@@ -219,8 +199,7 @@ def process_video(task_id: str):
     
     start_time = time.time()
     
-    # Call the face recognition function modified to return results
-    # We need to modify the recognize_faces_from_video function to return results
+    # Call the Face Recognition function to return results
     results, stats = process_and_monitor_progress(file_path, task_id)
     
     # Update task with results
@@ -231,15 +210,13 @@ def process_video(task_id: str):
     tasks[task_id]["stats"] = stats
     tasks[task_id]["processing_time"] = processing_time
 
-# Function to process video and monitor progress
+# Function to process the video and monitor progress
 def process_and_monitor_progress(video_path: str, task_id: str):
     """Process video using the face recognition function and update progress."""
     
     # Define a progress callback function
     def update_progress(progress: int):
         tasks[task_id]["progress"] = progress
-    
-    # Call the face recognition function
     results, stats = recognize_faces_from_video(
         video_path=video_path,
         threshold=0.3,
@@ -251,7 +228,7 @@ def process_and_monitor_progress(video_path: str, task_id: str):
     
     return results, stats
 
-# Add a route to serve static files
+# Add a route for serve static files
 from fastapi.staticfiles import StaticFiles
 app.mount("/screenshots_original", StaticFiles(directory="screenshots_original"), name="screenshots")
 app.mount("/cropped_faces", StaticFiles(directory="cropped_faces"), name="cropped_faces")
@@ -314,15 +291,6 @@ async def upload_suspect(
 
 @app.post("/process-live-frame")
 async def process_live_frame(frame_data: Dict[str, Any] = Body(...)):
-    """
-    Process a frame from the frontend camera and perform face detection.
-    
-    Args:
-        frame_data: Dictionary containing base64-encoded image data
-        
-    Returns:
-        Detection results including recognized faces
-    """
     if not live_recognition_ready:
         return JSONResponse(
             status_code=500,
@@ -330,35 +298,26 @@ async def process_live_frame(frame_data: Dict[str, Any] = Body(...)):
         )
     
     try:
-        # Extract the base64 image data
+        # Extract base64 Image data
         base64_image = frame_data.get("image")
         if not base64_image:
             return JSONResponse(
                 status_code=400,
                 content={"status": "error", "message": "No image data provided"}
             )
-        
-        # Remove data URL prefix if present
         if "base64," in base64_image:
             base64_image = base64_image.split("base64,")[1]
-        
-        # Decode the base64 image
         image_bytes = base64.b64decode(base64_image)
         img = Image.open(io.BytesIO(image_bytes))
-        
-        # Convert PIL Image to OpenCV format
         img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-        
-        # Convert to RGB for face recognition
         img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
         
-        # Get face features
+        # Get Face features
         faces = live_face_app.get(img_rgb)
         
         if not faces:
             return {"status": "success", "detections": []}
-        
-        # Load face database
+
         index, records = load_face_database()
         if index is None:
             return {"status": "success", "detections": [], "message": "No faces in database"}
@@ -367,14 +326,12 @@ async def process_live_frame(frame_data: Dict[str, Any] = Body(...)):
         threshold = 0.5  # Similarity threshold for face recognition
         
         for face in faces:
-            # Extract face bounding box
+            # Extract Face bounding box
             x1, y1, x2, y2 = map(int, face.bbox)
             
-            # Get face embedding
+            # embed the face
             feature_vector = face.embedding.reshape(1, -1).astype('float32')
             faiss.normalize_L2(feature_vector)
-            
-            # Search for similar faces in the database
             similarity, index_match = index.search(feature_vector, 1)
             best_similarity = similarity[0][0]
             
@@ -388,7 +345,7 @@ async def process_live_frame(frame_data: Dict[str, Any] = Body(...)):
                     "recognized": False
                 }
             else:
-                # Known face
+                # Face which is known
                 matched_id, matched_name, matched_location, matched_image = records[index_match[0][0]]
                 detection = {
                     "bbox": [x1, y1, x2, y2],
@@ -415,12 +372,6 @@ async def process_live_frame(frame_data: Dict[str, Any] = Body(...)):
 
 @app.get("/get-faces")
 async def get_faces():
-    """
-    Retrieve all faces from the Firestore database.
-    
-    Returns:
-        List of faces with their details
-    """
     try:
         if not db:
             return JSONResponse(
@@ -454,15 +405,6 @@ async def get_faces():
 
 @app.delete("/delete-face/{face_id}")
 async def delete_face(face_id: str):
-    """
-    Delete a face from the Firestore database by ID.
-    
-    Args:
-        face_id: ID of the face to delete
-        
-    Returns:
-        Success or error message
-    """
     try:
         if not db:
             return JSONResponse(
@@ -474,19 +416,14 @@ async def delete_face(face_id: str):
         face_ref = db.collection("faces").document(face_id)
         face_data = face_ref.get().to_dict()
         
-        # Delete the face document from Firestore
+        # Delete Face document from Firestore
         face_ref.delete()
-        
-        # Delete associated image file if it exists
         if face_data and "image_path" in face_data and face_data["image_path"]:
             image_path = face_data["image_path"]
-            # Convert from relative URL to file system path if needed
             if image_path.startswith("backend/"):
-                # The path is already a file system path
                 if os.path.exists(image_path):
                     os.remove(image_path)
             elif not image_path.startswith("http"):
-                # Construct file path from relative path
                 full_path = os.path.join("backend", image_path)
                 if os.path.exists(full_path):
                     os.remove(full_path)
@@ -502,4 +439,5 @@ async def delete_face(face_id: str):
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
