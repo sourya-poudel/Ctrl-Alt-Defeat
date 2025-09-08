@@ -1,4 +1,4 @@
-# train_generator.py
+
 import os
 import torch
 import torch.nn as nn
@@ -6,10 +6,6 @@ import torch.optim as optim
 from torchvision import transforms
 from torch.utils.data import DataLoader, Dataset
 from PIL import Image
-
-# -------------------------
-# Down / Up blocks (match your inference file)
-# -------------------------
 class DownSample(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(DownSample, self).__init__()
@@ -19,7 +15,6 @@ class DownSample(nn.Module):
         )
     def forward(self, x):
         return self.model(x)
-
 class Upsample(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(Upsample, self).__init__()
@@ -33,9 +28,6 @@ class Upsample(nn.Module):
         x = torch.cat((x, skip_input), 1)
         return x
 
-# -------------------------
-# Generator (exact naming used in sketch_to_color.py)
-# -------------------------
 class Generator(nn.Module):
     def __init__(self):
         super(Generator, self).__init__()
@@ -48,8 +40,8 @@ class Generator(nn.Module):
         self.down7 = DownSample(512, 512)
         self.down8 = DownSample(512, 512)
 
-        # Note: in_channels passed to Upsample is the number of channels the previous concatenated tensor has
-        self.up1 = Upsample(512, 512)    # input: d8 -> convT -> concat d7 -> channels 512+512 = 1024 next
+        #upsample
+        self.up1 = Upsample(512, 512)    
         self.up2 = Upsample(1024, 512)
         self.up3 = Upsample(1024, 512)
         self.up4 = Upsample(1024, 512)
@@ -74,7 +66,7 @@ class Generator(nn.Module):
         d7 = self.down7(d6)
         d8 = self.down8(d7)
 
-        u1 = self.up1(d8, d7)    # out channels -> convT(512) concat d7(512) => 1024
+        u1 = self.up1(d8, d7)   
         u2 = self.up2(u1, d6)
         u3 = self.up3(u2, d5)
         u4 = self.up4(u3, d4)
@@ -83,19 +75,15 @@ class Generator(nn.Module):
         u7 = self.up7(u6, d1)
         return self.final(u7)
 
-# -------------------------
-# Paired dataset for sketch <> real images
-# -------------------------
+
 class PairedImageDataset(Dataset):
     def __init__(self, sketch_dir, img_dir, transform=None):
         self.sketch_dir = sketch_dir
         self.img_dir = img_dir
         self.transform = transform
-        # only files that exist in both folders
         sketch_files = set([f for f in os.listdir(sketch_dir) if os.path.isfile(os.path.join(sketch_dir, f))])
         img_files = set([f for f in os.listdir(img_dir) if os.path.isfile(os.path.join(img_dir, f))])
         self.filenames = sorted(list(sketch_files & img_files))
-
     def __len__(self):
         return len(self.filenames)
 
@@ -110,22 +98,15 @@ class PairedImageDataset(Dataset):
         if self.transform:
             sketch = self.transform(sketch)
             img = self.transform(img)
-
         return sketch, img
 
-# -------------------------
-# Training loop (simple L1 training)
-# -------------------------
 def train():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    # --- paths (adjust if different) ---
     sketch_dir = "images/Paired_Images-perfect/sketch"
     img_dir = "images/Paired_Images-perfect/real"
     os.makedirs("checkpoints", exist_ok=True)
     save_path = os.path.join("checkpoints", "generator_pix2pix.pth")
 
-    # --- hyperparams ---
     batch_size = 4
     epochs = 50
     lr = 2e-4
@@ -164,15 +145,14 @@ def train():
 
         avg_loss = running_loss / len(dataloader) if len(dataloader) > 0 else 0.0
         print(f"Epoch {epoch} completed. Avg Loss: {avg_loss:.4f}")
-
-        # Optional: save intermediate checkpoints every N epochs
+#save checkpoint
         if epoch % 10 == 0:
             torch.save(generator.state_dict(), save_path)
             print(f"Saved checkpoint at epoch {epoch} -> {save_path}")
 
-    # final save (this will overwrite intermediate)
     torch.save(generator.state_dict(), save_path)
     print("Training finished. Final model saved to:", save_path)
 
 if __name__ == "__main__":
     train()
+
