@@ -32,11 +32,9 @@ location_file = r"location.txt"
 os.makedirs(cropped_faces_dir, exist_ok=True)
 
 def natural_sort_key(text):
-    """Sorts filenames numerically instead of lexicographically."""
     return [int(part) if part.isdigit() else part for part in re.split(r'(\d+)', text)]
 
 def load_names_and_locations():
-    """Loads names and locations from text files into a dictionary."""
     names = []
     locations = []
 
@@ -51,7 +49,6 @@ def load_names_and_locations():
     return names, locations
 
 def store_face_data_in_firestore(person_name, location, image_path, feature_vector):
-    """Stores extracted face data in Firestore."""
     doc_ref = db.collection("faces").document(person_name)
     doc_ref.set({
         "name": person_name,
@@ -62,7 +59,6 @@ def store_face_data_in_firestore(person_name, location, image_path, feature_vect
     print(f"Stored {person_name} in Firestore.")
 
 def process_images():
-    """Processes images sequentially, extracts faces, and stores in Firestore."""
     feature_dict = {}
     failed_images = []
 
@@ -156,7 +152,7 @@ def process_single_image(image_path, person_name, location):
             
         img_h, img_w, _ = img.shape
         
-        # Get the first detected face (assuming one face per suspect image)
+        # Get the first detected face
         face = faces[0]
         
         x1, y1, x2, y2 = map(int, face.bbox)
@@ -173,16 +169,14 @@ def process_single_image(image_path, person_name, location):
         cropped_face_path = os.path.join(cropped_faces_dir, cropped_face_filename)
         cv2.imwrite(cropped_face_path, cropped_face)
         
-        # Extract face features/embedding
+        # Extract face embedding
         feature_vector = face.embedding.tolist()
         
         if not feature_vector:
             return {"success": False, "error": f"Feature extraction failed for {image_path}"}
             
-        # Store in Firestore
         store_face_data_in_firestore(person_name, location, cropped_face_path, feature_vector)
         
-        # Add to features.json for compatibility with other functions
         try:
             if os.path.exists(feature_file):
                 with open(feature_file, "r") as f:
@@ -210,3 +204,4 @@ def process_single_image(image_path, person_name, location):
 
 if __name__ == "__main__":
     process_images()
+
