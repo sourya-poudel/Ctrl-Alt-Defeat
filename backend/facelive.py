@@ -82,11 +82,11 @@ def recognize_live():
 
         frame_width = frame.shape[1]
 
-        # Detect faces on the original frame (no flip here)
+        # Detect faces on the original Frame
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         faces = face_app.get(frame_rgb)
 
-        # Flip frame for display after detection
+        # Flip frame for display after Detection
         flipped_frame = cv2.flip(frame, 1)
 
         print(f"Faces detected: {len(faces)}")
@@ -103,8 +103,6 @@ def recognize_live():
             best_similarity = similarity[0][0]
 
             x1, y1, x2, y2 = map(int, face.bbox)
-
-            # Flip bbox coordinates horizontally for flipped frame
             x1 = x2
             x2 = x1
     
@@ -113,7 +111,7 @@ def recognize_live():
                 matched_id, matched_name, matched_location = records[index_match[0][0]]
                 print(f"Recognized: {matched_name} from {matched_location} (Similarity: {best_similarity:.2f})")
 
-            # Draw on flipped frame
+            # Draw in Flipped frame
             cv2.rectangle(flipped_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
             display_text = f"{matched_name} - {matched_location} ({best_similarity:.2f})"
             cv2.putText(flipped_frame, display_text, (x1, y1 - 10),
@@ -135,3 +133,4 @@ def recognize_live():
 
 if __name__ == "__main__":
     recognize_live()
+
